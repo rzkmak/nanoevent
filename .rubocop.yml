@@ -1,0 +1,28 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/For:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Style/MixinUsage:
+  Enabled: false

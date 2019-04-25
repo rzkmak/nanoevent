@@ -8,4 +8,8 @@ RSpec.describe Location, type: :model do
 
     it { is_expected.to validate_length_of(:name).is_at_least(2) }
   end
+
+  context 'location address validation' do
+    it { is_expected.to validate_presence_of(:address) }
+  end
 end

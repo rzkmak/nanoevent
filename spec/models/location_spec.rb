@@ -11,5 +11,7 @@ RSpec.describe Location, type: :model do
 
   context 'location address validation' do
     it { is_expected.to validate_presence_of(:address) }
+
+    it { is_expected.to validate_length_of(:address).is_at_most(50) }
   end
 end

@@ -24,4 +24,8 @@ RSpec.describe Location, type: :model do
 
     it { is_expected.to validate_length_of(:city).is_at_least(2) }
   end
+
+  context 'location latitude validation' do
+    it { is_expected.to validate_presence_of(:latitude) }
+  end
 end

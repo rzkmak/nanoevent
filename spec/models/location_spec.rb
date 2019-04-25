@@ -28,4 +28,8 @@ RSpec.describe Location, type: :model do
   context 'location latitude validation' do
     it { is_expected.to validate_presence_of(:latitude) }
   end
+
+  context 'location longitude validation' do
+    it { is_expected.to validate_presence_of(:longitude) }
+  end
 end

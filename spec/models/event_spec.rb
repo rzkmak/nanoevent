@@ -32,4 +32,8 @@ RSpec.describe Event, type: :model do
   context 'event end_date validation' do
     it { is_expected.to validate_presence_of(:end_date) }
   end
+
+  context 'event has many ticket' do
+    it { should have_many(:tickets) }
+  end
 end

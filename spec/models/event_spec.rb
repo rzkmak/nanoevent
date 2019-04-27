@@ -24,4 +24,8 @@ RSpec.describe Event, type: :model do
   context 'event capacity validation' do
     it { is_expected.to validate_presence_of(:capacity) }
   end
+
+  context 'event start_date validation' do
+    it { is_expected.to validate_presence_of(:start_date) }
+  end
 end

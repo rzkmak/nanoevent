@@ -15,5 +15,7 @@ RSpec.describe Event, type: :model do
 
   context 'event organizer validation' do
     it { is_expected.to validate_presence_of(:organizer) }
+
+    it { is_expected.to validate_length_of(:organizer).is_at_most(50) }
   end
 end

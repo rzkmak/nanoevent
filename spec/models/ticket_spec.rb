@@ -20,4 +20,8 @@ RSpec.describe Ticket, type: :model do
   context 'ticket price validation' do
     it { is_expected.to validate_presence_of(:price) }
   end
+
+  context 'ticket description validation' do
+    it { is_expected.to validate_presence_of(:description) }
+  end
 end

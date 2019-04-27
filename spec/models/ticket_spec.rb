@@ -16,4 +16,8 @@ RSpec.describe Ticket, type: :model do
   context 'ticket quota validation' do
     it { is_expected.to validate_presence_of(:quota) }
   end
+
+  context 'ticket price validation' do
+    it { is_expected.to validate_presence_of(:price) }
+  end
 end

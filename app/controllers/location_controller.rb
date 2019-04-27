@@ -3,6 +3,8 @@ class LocationController < ApplicationController
     location = Location.new(location_params)
 
     render_errors(location.errors) unless location.valid?
+
+    render json: { location: location }, status: :created if location.save
   end
 
   private

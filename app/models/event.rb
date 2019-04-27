@@ -3,5 +3,6 @@ class Event < ApplicationRecord
   validates :organizer, presence: true, length: { minimum: 2, maximum: 50 }
   validates :capacity, presence: true
   validates :start_date, presence: true
+  validates :end_date, presence: true
   belongs_to :location
 end

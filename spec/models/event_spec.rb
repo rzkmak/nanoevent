@@ -28,4 +28,8 @@ RSpec.describe Event, type: :model do
   context 'event start_date validation' do
     it { is_expected.to validate_presence_of(:start_date) }
   end
+
+  context 'event end_date validation' do
+    it { is_expected.to validate_presence_of(:end_date) }
+  end
 end

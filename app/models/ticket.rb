@@ -6,4 +6,5 @@ class Ticket < ApplicationRecord
   validates :start_sell, presence: true
   validates :end_sell, presence: true
   belongs_to :event
+  has_many :purchase_tickets
 end

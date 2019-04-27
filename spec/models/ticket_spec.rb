@@ -36,4 +36,8 @@ RSpec.describe Ticket, type: :model do
   context 'ticket end_sell validation' do
     it { is_expected.to validate_presence_of(:end_sell) }
   end
+
+  context 'purchase_ticket validation' do
+    it { should have_many(:purchase_tickets) }
+  end
 end

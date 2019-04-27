@@ -42,4 +42,8 @@ RSpec.describe LocationController, type: :controller do
       expect(response).to have_http_status :created
     end
   end
+
+  context 'get all location' do
+
+  end
 end

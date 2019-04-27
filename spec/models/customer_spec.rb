@@ -16,4 +16,8 @@ RSpec.describe Customer, type: :model do
 
     it { is_expected.to validate_length_of(:email).is_at_least(10) }
   end
+
+  context 'customer purchase validation' do
+    it { should have_many(:purchases) }
+  end
 end

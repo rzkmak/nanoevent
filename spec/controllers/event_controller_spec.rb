@@ -20,7 +20,7 @@ RSpec.describe EventController, type: :controller do
     end
   end
 
-  context 'create wrong format params' do
+  context 'create event wrong format params' do
     before do
       @location = create :location
     end
@@ -62,7 +62,7 @@ RSpec.describe EventController, type: :controller do
 
     subject { post :create, params: { event: valid_param } }
 
-    it 'should return bad request when having wrong format param' do
+    it 'should return created when having valid format param' do
       subject
       expect(response).to have_http_status :created
     end

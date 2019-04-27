@@ -8,4 +8,8 @@ RSpec.describe Customer, type: :model do
 
     it { is_expected.to validate_length_of(:name).is_at_least(2) }
   end
+
+  context 'customer email validation' do
+    it { is_expected.to validate_presence_of(:email) }
+  end
 end

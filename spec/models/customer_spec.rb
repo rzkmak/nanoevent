@@ -11,5 +11,7 @@ RSpec.describe Customer, type: :model do
 
   context 'customer email validation' do
     it { is_expected.to validate_presence_of(:email) }
+
+    it { is_expected.to validate_length_of(:email).is_at_most(30) }
   end
 end

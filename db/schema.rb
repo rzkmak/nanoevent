@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_427_101_902) do
+ActiveRecord::Schema.define(version: 20_190_427_102_326) do
   create_table 'customers', force: :cascade do |t|
     t.string 'name', limit: 30
     t.string 'email', limit: 30
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 20_190_427_101_902) do
     t.decimal 'latitude', precision: 10, scale: 6
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+  end
+
+  create_table 'purchase_tickets', force: :cascade do |t|
+    t.integer 'purchase_id'
+    t.integer 'ticket_id'
+    t.integer 'amount'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['purchase_id'], name: 'index_purchase_tickets_on_purchase_id'
+    t.index ['ticket_id'], name: 'index_purchase_tickets_on_ticket_id'
   end
 
   create_table 'purchases', force: :cascade do |t|

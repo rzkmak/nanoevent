@@ -12,7 +12,7 @@ class EventController < ApplicationController
 
     render_errors(ticket.errors) unless ticket.valid?
 
-    render json: { event: event }, status: :created if ticket.save
+    render json: { ticket: ticket }, status: :created if ticket.save
   end
 
   private

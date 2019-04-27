@@ -43,4 +43,28 @@ RSpec.describe EventController, type: :controller do
       expect(response).to have_http_status :bad_request
     end
   end
+
+  context 'create with valid params' do
+    before do
+      @location = create :location
+    end
+
+    let(:valid_param) do
+      {
+        "name": 'Event A',
+        "organizer": 'Organizer A',
+        "capacity": 50,
+        "start_date": '2013-02-02 01:00:00',
+        "end_date": '2013-02-02 01:00:00',
+        "location_id": @location.id
+      }
+    end
+
+    subject { post :create, params: { event: valid_param } }
+
+    it 'should return bad request when having wrong format param' do
+      subject
+      expect(response).to have_http_status :created
+    end
+  end
 end

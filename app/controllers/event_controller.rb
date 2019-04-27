@@ -3,6 +3,8 @@ class EventController < ApplicationController
     event = Event.new(event_params)
 
     render_errors(event.errors) unless event.valid?
+
+    render json: { event: event }, status: :created if event.save
   end
 
   private

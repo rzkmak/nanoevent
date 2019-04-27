@@ -136,4 +136,13 @@ RSpec.describe EventController, type: :controller do
       expect(response).to have_http_status :created
     end
   end
+
+  context 'get all event' do
+    subject { get :index }
+
+    it 'should return ok when displaying all event' do
+      subject
+      expect(response).to have_http_status :ok
+    end
+  end
 end

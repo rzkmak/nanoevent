@@ -7,6 +7,12 @@ class EventController < ApplicationController
     render json: { event: event }, status: :created if event.save
   end
 
+  def index
+    event = Event.includes(:location, :tickets)
+
+    render json: event, status: :ok, each_serializer: EventSerializer
+  end
+
   def create_ticket
     ticket = Ticket.new(ticket_params)
 

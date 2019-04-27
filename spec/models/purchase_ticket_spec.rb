@@ -8,4 +8,8 @@ RSpec.describe PurchaseTicket, type: :model do
   context 'ticket belongs to specific ticket' do
     it { should belong_to(:ticket) }
   end
+
+  context 'purchase_ticket amount validation' do
+    it { is_expected.to validate_presence_of(:amount) }
+  end
 end

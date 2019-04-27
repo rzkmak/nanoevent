@@ -11,6 +11,8 @@ class EventController < ApplicationController
     ticket = Ticket.new(ticket_params)
 
     render_errors(ticket.errors) unless ticket.valid?
+
+    render json: { event: event }, status: :created if ticket.save
   end
 
   private

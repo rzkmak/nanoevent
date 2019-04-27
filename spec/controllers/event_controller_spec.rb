@@ -87,4 +87,28 @@ RSpec.describe EventController, type: :controller do
       expect(response).to have_http_status :bad_request
     end
   end
+
+  context 'create ticket wrong format params' do
+    before do
+      @event = create :event
+    end
+
+    let(:invalid_param) do
+      {
+        "name": 'Ticket Exclusive B',
+        "quota": 10,
+        "price": 50.000,
+        "start_sell": 'monday',
+        "event_id": @event.id,
+        "description": 'Exclusive ticket for special member'
+      }
+    end
+
+    subject { post :create_ticket, params: { ticket: invalid_param } }
+
+    it 'should return bad request when having incomplete params' do
+      subject
+      expect(response).to have_http_status :bad_request
+    end
+  end
 end

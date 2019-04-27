@@ -32,4 +32,8 @@ RSpec.describe Ticket, type: :model do
   context 'ticket start_sell validation' do
     it { is_expected.to validate_presence_of(:start_sell) }
   end
+
+  context 'ticket end_sell validation' do
+    it { is_expected.to validate_presence_of(:end_sell) }
+  end
 end

@@ -69,21 +69,4 @@ ActiveRecord::Schema.define(version: 20_190_427_102_326) do
     t.datetime 'updated_at', null: false
     t.index ['event_id'], name: 'index_tickets_on_event_id'
   end
-
-  create_table 'transaction_tickets', force: :cascade do |t|
-    t.integer 'transaction_id'
-    t.integer 'ticket_id'
-    t.integer 'amount'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['ticket_id'], name: 'index_transaction_tickets_on_ticket_id'
-    t.index ['transaction_id'], name: 'index_transaction_tickets_on_transaction_id'
-  end
-
-  create_table 'transactions', force: :cascade do |t|
-    t.integer 'customer_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['customer_id'], name: 'index_transactions_on_customer_id'
-  end
 end

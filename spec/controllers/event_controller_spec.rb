@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EventController, type: :controller do
-  context 'create invalid params' do
+  context 'create event invalid params' do
     let(:invalid_param) do
       {
         "name": 'Event A',
@@ -65,6 +65,26 @@ RSpec.describe EventController, type: :controller do
     it 'should return bad request when having wrong format param' do
       subject
       expect(response).to have_http_status :created
+    end
+  end
+
+  context 'create ticket invalid params' do
+    let(:invalid_param) do
+      {
+        "name": 'Ticket Exclusive B',
+        "quota": 10,
+        "price": 50_000,
+        "start_sell": '2013-02-02 01:00:00',
+        "end_sell": '2013-02-02 01:00:00',
+        "description": 'Exclusive ticket for special member'
+      }
+    end
+
+    subject { post :create_ticket, params: { ticket: invalid_param } }
+
+    it 'should return bad request when having incomplete params' do
+      subject
+      expect(response).to have_http_status :bad_request
     end
   end
 end

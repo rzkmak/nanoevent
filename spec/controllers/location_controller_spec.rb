@@ -44,6 +44,5 @@ RSpec.describe LocationController, type: :controller do
   end
 
   context 'get all location' do
-
   end
 end

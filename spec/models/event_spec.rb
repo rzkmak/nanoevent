@@ -20,4 +20,8 @@ RSpec.describe Event, type: :model do
 
     it { is_expected.to validate_length_of(:organizer).is_at_least(2) }
   end
+
+  context 'event capacity validation' do
+    it { is_expected.to validate_presence_of(:capacity) }
+  end
 end

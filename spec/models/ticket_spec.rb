@@ -23,5 +23,7 @@ RSpec.describe Ticket, type: :model do
 
   context 'ticket description validation' do
     it { is_expected.to validate_presence_of(:description) }
+
+    it { is_expected.to validate_length_of(:description).is_at_most(50) }
   end
 end

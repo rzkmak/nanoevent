@@ -32,4 +32,8 @@ RSpec.describe Location, type: :model do
   context 'location longitude validation' do
     it { is_expected.to validate_presence_of(:longitude) }
   end
+
+  context 'event in location' do
+    it { should have_many(:events) }
+  end
 end

@@ -97,3 +97,20 @@ After environment has been setup, you can do the test simply by typing
 ```
 rake spec
 ```
+
+#### How to Lint
+This project use rubocop as default linter, if it not integrated with your IDE.
+You can use this command to lint and fix
+```
+rubocop -a
+```
+
+## Application Dependencies
+
+This is list of application dependencies (other than default imported by rails):
+
+- [Active Model Serializer](https://github.com/rails-api/active_model_serializers)
+- [Factory Bot Rails](https://github.com/thoughtbot/factory_bot_rails)
+- [Should a Matchers](https://github.com/thoughtbot/shoulda-matchers)
+- [DotEnv](https://github.com/thoughtbot/shoulda-matchers)
+- [Rubocop](https://github.com/rubocop-hq/rubocop)

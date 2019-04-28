@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post '/event/ticket/create', to: 'event#create_ticket', action: 'create_ticket'
 
   post '/transaction/purchase', to: 'purchase#create', action: 'create'
+  get '/transaction/get_info/:id', to: 'purchase#index', action: 'index'
 end

@@ -98,4 +98,17 @@ RSpec.describe PurchaseController, type: :controller do
       expect(response).to have_http_status :created
     end
   end
+
+  context 'purchase get specific id' do
+    before do
+      @purchase = create :purchase
+    end
+
+    subject { get :index, params: { id: @purchase.id } }
+
+    it 'should return ok when success get information' do
+      subject
+      expect(response).to have_http_status :ok
+    end
+  end
 end

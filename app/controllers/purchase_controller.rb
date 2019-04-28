@@ -51,6 +51,11 @@ class PurchaseController < ApplicationController
       render_errors('Transaction Error': 'Invalid transaction')
   end
 
+  def index
+    purchase = Purchase.includes(:purchase_tickets).find(params[:id])
+    render json: purchase, status: :ok
+  end
+
   private
 
   def purchase_params

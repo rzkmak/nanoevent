@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres'
+    ports:
+    - 5432:5432
+  nanoevent:
+    links:
+    - postgres
+    build: .
+    environment:
+    - NANOEVENT_ADAPTER_DB=postgresql
+    - NANOEVENT_HOST_DB=postgres
+    - NANOEVENT_PORT_DB=5432
+    - NANOEVENT_USER_DB=postgres
+    - NANOEVENT_PASSWORD_DB=
+    - NANOEVENT_DB=nanoevent
+    ports:
+    - 3000:3000
+    volumes:
+    - .:/opt/nanoevent

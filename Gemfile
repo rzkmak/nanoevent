@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3', '~> 1.3.6'
+gem 'pg'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -17,6 +18,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'shoulda-matchers', '~> 3.0'
   gem 'simplecov'
+  gem 'dotenv-rails'
 end
 
 group :development do

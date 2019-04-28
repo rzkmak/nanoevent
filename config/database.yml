@@ -1,20 +1,15 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
-  adapter: <%= ENV.fetch("NANOEVENT_DEV_DB") { "sqlite3" } %>
+  <<: *default
+  database:  <%= ENV.fetch("NANOEVENT_DB") { "db/development.sqlite3" } %>
+  adapter: <%= ENV.fetch("NANOEVENT_ADAPTER_DB") { "sqlite3" } %>
   host: <%= ENV.fetch("NANOEVENT_HOST_DB") { "" } %>
   username: <%= ENV.fetch("NANOEVENT_USER_DB") { "" } %>
   password: <%= ENV.fetch("NANOEVENT_PASSWORD_DB") { "" } %>
-  <<: *default
-  database: db/development.sqlite3
+  port: <%= ENV.fetch("NANOEVENT_PORT_DB") { "" } %>
 
 test:
   <<: *default

@@ -22,6 +22,33 @@ class PurchaseController < ApplicationController
         return
       end
     end
+
+    purchase_result_id = nil
+
+    ActiveRecord::Base.transaction do
+      purchase_base = Purchase.new
+      purchase_base.customer_id = purchase_data[:customer_id]
+      purchase_base.save
+      purchase_result_id = purchase_base.id
+      purchase_data[:tickets].each do |item|
+        temp_purchase_ticket = PurchaseTicket.new
+        temp_purchase_ticket.ticket_id = item[:ticket_id]
+        temp_purchase_ticket.amount = item[:amount]
+        temp_purchase_ticket.purchase_id = purchase_base.id
+        temp_purchase_ticket.save
+
+        update_ticket_qty = Ticket.find(item[:ticket_id])
+        update_ticket_qty.quota = update_ticket_qty.quota - temp_purchase_ticket.amount
+        update_ticket_qty.save
+      end
+    end
+
+    purchase_result = Purchase.includes(:purchase_tickets).find(purchase_result_id)
+
+    render json: purchase_result, status: :created
+
+    rescue ActiveRecord::RecordInvalid
+      render_errors('Transaction Error': 'Invalid transaction')
   end
 
   private

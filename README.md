@@ -12,6 +12,13 @@ This project was built using :
 - Ruby 2.5.3
 - Rails 5.2.2
 
+## API Documentation
+
+You can refer the api documrentation here: [https://documenter.getpostman.com/view/1315593/S1LparSo](https://documenter.getpostman.com/view/1315593/S1LparSo)
+And also it already deployed so you can try directly on that links.
+
+Or if you want to check manually, you can refer to [157.230.250.125:3000](157.230.250.125:3000)
+
 ## Dev Setup
 
 ### Docker Environment

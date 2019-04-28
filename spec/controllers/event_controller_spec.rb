@@ -72,7 +72,7 @@ RSpec.describe EventController, type: :controller do
     let(:invalid_param) do
       {
         "name": 'Ticket Exclusive B',
-        "quota": 10,
+        "quota": 1,
         "price": 50_000,
         "start_sell": '2013-02-02 01:00:00',
         "end_sell": '2013-02-02 01:00:00',
@@ -96,7 +96,7 @@ RSpec.describe EventController, type: :controller do
     let(:invalid_param) do
       {
         "name": 'Ticket Exclusive B',
-        "quota": 10,
+        "quota": 1,
         "price": 50.000,
         "start_sell": 'monday',
         "event_id": @event.id,
@@ -117,10 +117,35 @@ RSpec.describe EventController, type: :controller do
       @event = create :event
     end
 
+    let(:valid_param) do
+      {
+        "name": 'Ticket Exclusive B',
+        "quota": 1,
+        "price": 50.000,
+        "start_sell": '2013-02-02 01:00:00',
+        "end_sell": '2013-02-02 01:00:00',
+        "event_id": @event.id,
+        "description": 'Exclusive ticket for special member'
+      }
+    end
+
+    subject { post :create_ticket, params: { ticket: valid_param } }
+
+    it 'should return created when having valid params' do
+      subject
+      expect(response).to have_http_status :created
+    end
+  end
+
+  context 'create ticket over capacity event' do
+    before do
+      @event = create :event, id: 1, capacity: 10
+    end
+
     let(:invalid_param) do
       {
         "name": 'Ticket Exclusive B',
-        "quota": 10,
+        "quota": @event.capacity + 10,
         "price": 50.000,
         "start_sell": '2013-02-02 01:00:00',
         "end_sell": '2013-02-02 01:00:00',
@@ -131,9 +156,9 @@ RSpec.describe EventController, type: :controller do
 
     subject { post :create_ticket, params: { ticket: invalid_param } }
 
-    it 'should return created when having valid params' do
+    it 'should return bad request when having ticket quota larger than capacity' do
       subject
-      expect(response).to have_http_status :created
+      expect(response).to have_http_status :bad_request
     end
   end
 

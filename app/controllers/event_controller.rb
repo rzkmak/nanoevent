@@ -16,9 +16,21 @@ class EventController < ApplicationController
   def create_ticket
     ticket = Ticket.new(ticket_params)
 
+    event = Event.find(ticket_params[:event_id])
+
+    if event.capacity < ticket.quota
+      render_errors('Failed Ticket Create': 'Event has not enough capacity')
+      return
+    end
+
+    event.capacity = event.capacity - ticket.quota
+    event.save
+
     render_errors(ticket.errors) unless ticket.valid?
 
     render json: { ticket: ticket }, status: :created if ticket.save
+  rescue ActiveRecord::RecordNotFound
+    render_errors('Ticket Create Error': 'Invalid Event ID')
   end
 
   private

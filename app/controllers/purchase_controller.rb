@@ -46,9 +46,8 @@ class PurchaseController < ApplicationController
     purchase_result = Purchase.includes(:purchase_tickets).find(purchase_result_id)
 
     render json: purchase_result, status: :created
-
-    rescue ActiveRecord::RecordInvalid
-      render_errors('Transaction Error': 'Invalid transaction')
+  rescue ActiveRecord::RecordInvalid
+    render_errors('Transaction Error': 'Invalid transaction')
   end
 
   def index

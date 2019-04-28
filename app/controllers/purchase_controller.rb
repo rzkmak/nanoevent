@@ -1,20 +1,27 @@
 class PurchaseController < ApplicationController
   def create
     purchase_data = purchase_params
-
-    first_ticket = Ticket.find(purchase_data[:tickets][0][:ticket_id])
-
-    transaction = true
+    first_data = purchase_data[:tickets].shift
+    first_ticket = Ticket.find(first_data[:ticket_id])
+    first_data[:quota] = first_ticket.quota
 
     purchase_data[:tickets].each do |item|
       temp_ticket = Ticket.find(item[:ticket_id])
+      item[:quota] = temp_ticket.quota
       if first_ticket[:event_id] != temp_ticket[:event_id]
-        transaction = false
-        break
+        render_errors('Transaction Error': 'Purchase should be in one event')
+        return
       end
     end
 
-    render_errors('Transaction Error': 'Purchase should be in one event') unless transaction
+    purchase_data[:tickets].push(first_data)
+
+    purchase_data[:tickets].each do |item|
+      if item[:amount].to_i > item[:quota].to_i
+        render_errors('Transaction Error': 'Some ticket already sold')
+        return
+      end
+    end
   end
 
   private

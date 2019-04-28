@@ -33,4 +33,36 @@ RSpec.describe PurchaseController, type: :controller do
       expect(response).to have_http_status :bad_request
     end
   end
+
+  context 'purchase ticket with less quota' do
+    before do
+      @event = create :event, id: 1
+
+      @first_ticket = create :ticket, id: 1, event_id: @event.id, quota: 10
+      @second_ticket = create :ticket, id: 2, event_id: @event.id, quota: 10
+    end
+
+    let(:ticket_with_higher_amount) do
+      {
+        "customer_id": '1',
+        "tickets": [
+          {
+            "ticket_id": @first_ticket.id,
+            "amount": 30
+          },
+          {
+            "ticket_id": @second_ticket.id,
+            "amount": 3
+          }
+        ]
+      }
+    end
+
+    subject { post :create, params: { purchase: ticket_with_higher_amount } }
+
+    it 'should return bad request when having less quota' do
+      subject
+      expect(response).to have_http_status :bad_request
+    end
+  end
 end

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: 'mysql:5.7'
+    environment: 
+    - MYSQL_USER=root
+    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    - MYSQL_PASSWORD=
+    - MYSQL_DATABASE=nanoevent
+    ports:
+    - 3306:3306
+  nanoevent:
+    links:
+    - db
+    build: .
+    environment:
+    - NANOEVENT_ADAPTER_DB=mysql2
+    - NANOEVENT_HOST_DB=db
+    - NANOEVENT_PORT_DB=3306
+    - NANOEVENT_USER_DB=root
+    - NANOEVENT_PASSWORD_DB=
+    - NANOEVENT_DB=nanoevent
+    ports:
+    - 3000:3000
+    volumes:
+    - .:/opt/nanoevent

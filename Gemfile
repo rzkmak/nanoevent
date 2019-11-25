@@ -10,6 +10,7 @@ gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3', '~> 1.3.6'
 gem 'pg'
+gem 'mysql2'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

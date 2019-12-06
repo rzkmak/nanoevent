@@ -5,7 +5,7 @@ ruby '2.5.3'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3', '~> 1.3.6'
